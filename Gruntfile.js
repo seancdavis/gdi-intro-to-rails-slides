@@ -36,7 +36,8 @@ module.exports = function(grunt) {
                     'dist/css/default.css': 'src/css/theme/source/default.scss',
                     'dist/css/gdicool.css': 'src/css/theme/source/gdicool.scss',
                     'dist/css/gdilight.css': 'src/css/theme/source/gdilight.scss',
-                    'dist/css/gdisunny.css': 'src/css/theme/source/gdisunny.scss'
+                    'dist/css/gdisunny.css': 'src/css/theme/source/gdisunny.scss',
+                    'dist/css/application.css': 'src/css/application.scss'
                 }
             }
         },
@@ -102,6 +103,10 @@ module.exports = function(grunt) {
             main: {
                 files: [ 'Gruntfile.js', 'src/js/reveal.js', 'src/css/theme/reveal.scss' ],
                 tasks: 'default'
+            },
+            css: {
+                files: [ 'src/css/application.scss' ],
+                tasks: 'sass'
             },
             theme: {
                 files: [ 'src/css/theme/source/*.scss', 'src/css/theme/template/*.scss' ],

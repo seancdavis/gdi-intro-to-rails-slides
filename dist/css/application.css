@@ -2,5 +2,7 @@
   color: white; }
 .reveal .text-black {
   color: black; }
+.reveal li {
+  margin-bottom: 12px; }
 
 /*# sourceMappingURL=application.css.map */

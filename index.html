@@ -866,7 +866,377 @@ end
           </ul>
         </section>
 
+        <section>
+          <h2>Creating A Student</h2>
+          <p>
+            Next, let's break down the process of how a student is created.
+          </p>
+          <ul>
+            <li class="fragment">
+              When you click "New Student" you follow the
+              <code>new_student_path</code>.
+            </li>
+            <li class="fragment">
+              Notice the URL (<code>/students/new</code>).
+            </li>
+            <li class="fragment">
+              The route points to the <code>new</code> action.
+            </li>
+            <li class="fragment">
+              <code>new</code> sets the <code>@student</code> variable
+              to <code>Student.new</code>.
+            </li>
+            <li class="fragment">
+              Calling <code>.new</code> on a class returns a new
+              <em>instance</em> of that class (which is just another object).
+              So, you have a student, but the student doesn't have a name,
+              age, or id yet.
+            </li>
+          </ul>
+        </section>
 
+        <section>
+          <h2>Creating A Student</h2>
+          <p>
+            Take a look at the view in
+            <code>app/views/students/new.html.erb</code>.
+          </p>
+          <pre class="fragment"><code class="html" data-trim>
+<h1>New Student</h1>
+
+<%= render 'form', student: @student %>
+
+<%= link_to 'Back', students_path %>
+          </code></pre>
+          <p class="fragment">
+            Ummmm ... the form is magically rendered?
+          </p>
+          <p class="fragment">
+            Actually, no. Within a view, <code>render</code> looks for a
+            <em>partial</em>, which is a view with the name you pass as an
+            argument.
+          </p>
+        </section>
+
+        <section>
+          <h2>Creating A Student</h2>
+          <p>
+            Go find a <code>_form.html.erb</code> file within the same directory
+            as the new view.
+          </p>
+          <pre class="fragment"><code class="html" data-trim>
+<%= form_with(model: student, local: true) do |form| %>
+  <% if student.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(student.errors.count, "error") %> prohibited this student from being saved:</h2>
+
+      <ul>
+      <% student.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :student_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :age %>
+    <%= form.number_field :age, id: :student_age %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+          </code></pre>
+          <p class="fragment">
+            There, that looks better!
+          </p>
+        </section>
+
+        <section>
+          <h2>Creating A Student</h2>
+          <p>
+            Let's talk about the form:
+          </p>
+          <ul>
+            <li class="fragment">
+              <code>form_with</code> is a form-building helper. (Notice the
+              equals sign before it. Forms need to be rendered to the page.)
+            </li>
+            <li class="fragment">
+              Because we have <code>model: student</code> as an argument to
+              <code>form_with</code>, <code>form.text_field :name</code>
+              will add a field for a student's name.
+            </li>
+            <li class="fragment">
+              <code>form.submit</code> adds a button that submits the form.
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Creating A Student</h2>
+          <p>
+            Because we have <code>form_with(model: student)</code>, Rails knows
+            where to submit the form. (This gets more complicated when our
+            routes file becomes more complex, but that's OK for now.)
+          </p>
+          <p class="fragment">
+            This means clicking the button sends the data within the form to
+            the <code>create</code> action on the students controller.
+          </p>
+        </section>
+
+        <section>
+          <h2>Creating A Student</h2>
+          <p>
+            In the <code>create</code> action, the student get initialized
+            like in new, except this time, it adds <code>student_params</code>
+            as an argument.
+          </p>
+          <pre class="fragment"><code class="ruby" data-trim>
+@student = Student.new(student_params)
+          </code></pre>
+          <p class="fragment">
+            <code>student_params</code> is a private method at the bottom of
+            the controller. (In this case, <em>private</em> just means it's
+            not a controller action.)
+          </p>
+          <pre class="fragment"><code class="ruby" data-trim>
+params.require(:student).permit(:name, :age)
+          </code></pre>
+          <p class="fragment">
+            This uses a Rails way of pulling the data from the request via
+            <code>params</code> and tells us which parameters are allowed.
+            (We'll come back to this later.)
+          </p>
+        </section>
+
+        <section>
+          <h2>Creating A Student</h2>
+          <p>
+            The rest of the <code>create</code> action has a lot going on,
+            but this is really all it's doing for our case:
+          </p>
+          <pre class="fragment"><code class="ruby" data-trim>
+if @student.save
+  redirect_to @student, notice: 'Student was successfully created.'
+else
+  render :new
+end
+          </code></pre>
+          <p class="fragment">
+            In other words, <em>if</em> the student can be saved, then we
+            redirect to the student (i.e. the <code>show</code> action for that
+            new student).
+          </p>
+          <p class="fragment">
+            If the student can <strong>not</strong> be saved, then we
+            render the <code>new</code> view. (This is a way to render a view
+            without redirecting. And we'll explore that next.)
+          </p>
+        </section>
+
+        <section>
+          <h2>Validations</h2>
+          <p>
+            Did you notice you can create a student with no data? Doesn't that
+            seem silly?
+          </p>
+          <p class="fragment">
+            Why don't we make sure that we at least need a name to be able to
+            create a student.
+          </p>
+          <p class="fragment">
+            Add the following to your student model:
+          </p>
+          <pre class="fragment"><code class="ruby" data-trim>
+validates_presence_of :name
+          </code></pre>
+          <p class="fragment">
+            This means the student model is going to require that name be
+            present or it won't let the student be saved.
+          </p>
+        </section>
+
+        <section>
+          <h2>Validations</h2>
+          <p>
+            Try to create the student again, and notice the errors.
+          </p>
+          <img src="dist/img/student-name-validation-error.png">
+        </section>
+
+        <section>
+          <h2>Validations</h2>
+          <p class="fragment">
+            Look back at the controller. In this case, the <code>create</code>
+            action could not save the student, so it rendered the
+            <code>new</code> view again without reloading the page.
+          </p>
+          <p class="fragment">
+            We don't want the page reloaded because we still have the student
+            object we <em>tried</em> to create, which helps that student's
+            attributes persist.
+          </p>
+          <p class="fragment">
+            I know, it's weird. But check it out. Try to create a new student
+            with only an age. Notice how the age is still there? Isn't that
+            the third coolest thing ever?
+          </p>
+        </section>
+
+        <section>
+          <h2>Editing A Student</h2>
+          <p>
+            Editing a student works in almost the exact same way as creating a
+            student.
+          </p>
+          <p>
+            The difference is that we need to retrieve the student
+            from the database first so we know which object we're going to
+            update.
+          </p>
+        </section>
+
+        <section>
+          <h2>Editing A Student</h2>
+          <p>
+            Look at the <code>edit</code> action:
+          </p>
+          <pre class="fragment"><code class="ruby" data-trim>
+def edit
+end
+          </code></pre>
+          <p class="fragment">
+            OK, so it's empty. But what about the view?
+          </p>
+          <pre class="fragment"><code class="ruby" data-trim>
+<h1>Editing Student</h1>
+
+<%= render 'form', student: @student %>
+
+<%= link_to 'Show', @student %> |
+<%= link_to 'Back', students_path %>
+          </code></pre>
+          <p class="fragment">
+            It's rendering the form while passing the <code>@student</code>
+            variable to it. But ... where did that variable get set?
+          </p>
+        </section>
+
+        <section>
+          <h2>Editing A Student</h2>
+          <p>
+            Look at the top of the controller:
+          </p>
+          <pre class="fragment"><code class="ruby" data-trim>
+before_action :set_student, only: [:show, :edit, :update, :destroy]
+          </code></pre>
+          <p class="fragment">
+            This tells the controller to run the <code>set_student</code>
+            method before the action is processed, but only for the show, edit
+            update, and destroy actions.
+          </p>
+          <p class="fragment">
+            Find <code>set_student</code>. It's a private method.
+          </p>
+          <pre class="fragment"><code class="ruby" data-trim>
+def set_student
+  @student = Student.find(params[:id])
+end
+          </code></pre>
+          <p class="fragment">
+            Notice how it sets the <code>@student</code> variable.
+            <br>
+            This is a great way to be DRY and share code among actions.
+          </p>
+        </section>
+
+        <section>
+          <h2>Editing A Student</h2>
+          <pre><code class="ruby" data-trim>
+@student = Student.find(params[:id])
+          </code></pre>
+          <p class="fragment">
+            In this case, <code>find</code> is also making a call to the
+            database. It requires that an <code>id</code> be passed to it.
+            <br>
+            (We will explore this idea more a bit later.)
+          </p>
+          <p class="fragment">
+            <code>params</code> is a <code>hash</code> of parameters available
+            to the controller.
+          </p>
+        </section>
+
+        <section>
+          <h2>Editing A Student</h2>
+          <p>
+            Look at your current URL: Something like
+            <code>/students/1/edit</code>. Remember <code>rails routes</code>
+            for the edit action?
+          </p>
+          <pre class="fragment"><code class="nohighlight" data-trim>
+edit_student GET    /students/:id/edit(.:format) students#edit
+          </code></pre>
+          <p class="fragment">
+            In this case, <code>:id</code> represents a varying parameter.
+            In our case, <code>1</code> is available through
+            <code>params[:id]</code>
+          </p>
+          <p class="fragment">
+            That means this:
+          </p>
+          <pre class="fragment"><code class="ruby" data-trim>
+@student = Student.find(params[:id])
+          </code></pre>
+          <p class="fragment">
+            Resolves to this:
+          </p>
+          <pre class="fragment"><code class="ruby" data-trim>
+@student = Student.find(1)
+          </code></pre>
+          <p class="fragment">
+            So we are returned the student with an <code>id</code> of
+            <code>1</code>.
+          </p>
+        </section>
+
+        <section>
+          <h2>Editing A Student</h2>
+          <p>
+            The other big difference between creating and updating is that your
+            <code>update</code> action calls
+            <code>@student.update(student_params)</code> instead of
+            <code>Student.new(student_params)</code>.
+          </p>
+          <p class="fragment">
+            <code>.update</code> is another method used to update an object
+            that already exists in the database.
+          </p>
+        </section>
+
+        <section>
+          <h2>Deleting A Student</h2>
+          <p>
+            By now, hopefully this process is familiar. When we hit the
+            <code>destroy</code> action, we:
+          </p>
+          <ul>
+            <li class="fragment">retrieve the student</li>
+            <li class="fragment">
+              call <code>@student.destroy</code> (which deletes the record from
+              the database)
+            </li>
+            <li class="fragment">redirect to the <code>index</code> action</li>
+          </p>
+        </section>
 
 
 

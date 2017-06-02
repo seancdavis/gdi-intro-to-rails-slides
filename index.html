@@ -1238,6 +1238,91 @@ edit_student GET    /students/:id/edit(.:format) students#edit
           </p>
         </section>
 
+        <section data-background-image="https://media.giphy.com/media/LSNqpYqGRqwrS/giphy.gif">
+          <h2 class="text-white">Celebrate!</h2>
+          <p class="text-white">You just learned the basics of a Rails app!</p>
+        </section>
+
+        <section>
+          <h2>Challenge!</h2>
+          <p>
+            Next, we want to be able to add teachers.
+          </p>
+          <p>
+            So, create a teacher model with the appropriate controller and
+            views.
+          </p>
+          <p>
+            The teacher should be required to have a name, and should also
+            have a hired date.
+          </p>
+        </section>
+
+        <section>
+          <h2>Challenge: Solution!</h2>
+          <p class="fragment">
+            Run the scaffold generator
+          </p>
+          <pre class="fragment"><code class="nohighlight" data-trim>
+$ rails generate scaffold teacher name:string hired_at:date
+          </code></pre>
+          <p class="fragment">
+            Run the migration.
+          </p>
+          <pre class="fragment"><code class="nohighlight" data-trim>
+$ rails db:migrate
+          </code></pre>
+          <p class="fragment">
+            Add the validation to the model.
+          </p>
+          <pre class="fragment"><code class="ruby" data-trim>
+validates_presence_of :name
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Teachers</h2>
+          <p>
+            Question: How do we get to the teachers views in the browser?
+          </p>
+          <p class="fragment">
+            One option: Go to <code>/teachers</code> directly.
+          </p>
+          <p class="fragment">
+            Better option: Build a header with links to students and teachers.
+          </p>
+        </section>
+
+        <section>
+          <h2>Shared Header</h2>
+          <p>
+            Have you noticed something missing?
+          </p>
+          <p class="fragment">
+            The only HTML we've talked about are little snippets. What about the
+            rest of the HTML. Where does it come from?
+          </p>
+          <p class="fragment">
+            Answer: <code>app/views/layouts/application.html.erb</code>
+          </p>
+          <p class="fragment">
+            There it is! How do our views get plugged into this?
+          </p>
+          <p class="fragment">
+            Answer: They are rendered where you see <code><%= yield %></code>.
+          </p>
+        </section>
+
+
+
+
+
+
+
+
+
+
+
 
 
 

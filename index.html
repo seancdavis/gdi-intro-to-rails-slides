@@ -1311,6 +1311,57 @@ validates_presence_of :name
           <p class="fragment">
             Answer: They are rendered where you see <code><%= yield %></code>.
           </p>
+          <p class="fragment">
+            Try it. Add some HTML to the body of the layout and see if it
+            shows up in the browser!
+          </p>
+        </section>
+
+        <section>
+          <h2>Shared Header</h2>
+          <p>
+            So, right inside the layout, we can add a header:
+          </p>
+          <pre class="fragment"><code class="ruby" data-trim>
+<body>
+  <header>
+    <h1>
+      <%= link_to 'GreatGraders', root_path %>
+    </h1>
+    <ul>
+      <li>
+        <%= link_to 'Students', students_path %>
+      </li>
+      <li>
+        <%= link_to 'Teachers', teachers_path %>
+      </li>
+    </ul>
+    <hr>
+  </header>
+  <%= yield %>
+</body>
+          </code></pre>
+          <p class="fragment">
+            It works, but it's pretty ugly. So why don't we move it into its
+            own partial?
+          </p>
+        </section>
+
+        <section>
+          <h2>Shared Header</h2>
+          <p>
+            Let's take the code we added and move it to a partial at
+            <code>app/views/application/_header.html.erb</code>
+          </p>
+          <p class="fragment">
+            In the layout, we simply need to make sure we render that partial.
+          </p>
+          <pre class="fragment"><code class="ruby" data-trim>
+<body>
+  <%= render 'header' %>
+  <%= yield %>
+</body>
+          </code></pre>
         </section>
 
 

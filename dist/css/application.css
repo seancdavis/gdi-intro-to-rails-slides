@@ -2402,6 +2402,11 @@ div.left-align {
   color: black; }
 .reveal li {
   margin-bottom: 12px; }
+.reveal *:not(pre) code {
+  background: transparent;
+  color: #f05b62;
+  font-family: monospace;
+  font-weight: 400; }
 .reveal pre > code {
   background: transparent;
   color: #333333;

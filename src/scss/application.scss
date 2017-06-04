@@ -20,6 +20,13 @@
     margin-bottom: 12px;
   }
 
+  *:not(pre) code {
+    background: transparent;
+    color: #f05b62;
+    font-family: monospace;
+    font-weight: 400;
+  }
+
   pre > code {
     background: transparent;
     color: rgb(51, 51, 51);

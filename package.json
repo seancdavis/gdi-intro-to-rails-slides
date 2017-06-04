@@ -4,7 +4,6 @@
   "description": "Girl Develop It framework for easily creating beautiful presentations using HTML in GDI theme. Forked from Hakim El Hattab's reveal.js",
   "homepage": "http://girldevelopit.github.io/gdi-slides-template",
   "scripts": {
-    "test": "grunt test",
     "start": ""
   },
   "author": {
@@ -30,7 +29,10 @@
     "cssnano": "^3.9.1",
     "grunt": "^1.0.1",
     "grunt-browser-sync": "^2.2.0",
+    "grunt-contrib-clean": "^1.1.0",
+    "grunt-contrib-concat": "^1.0.1",
     "grunt-contrib-connect": "^1.0.2",
+    "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-cssmin": "^1.0.2",
     "grunt-contrib-jshint": "^1.1.0",
     "grunt-contrib-qunit": "^1.2.0",

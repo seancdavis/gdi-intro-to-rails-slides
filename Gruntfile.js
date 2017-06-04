@@ -1,43 +1,33 @@
 /* global module:false */
 module.exports = function(grunt) {
     var port = grunt.option('port') || 8000;
+
     // Project configuration
     grunt.initConfig({
-        pkg: grunt.file.readJSON('package.json'),
-        meta: {
-            banner:
-            '/*!\n' +
-            ' * reveal.js <%= pkg.version %> (<%= grunt.template.today("yyyy-mm-dd, HH:MM") %>)\n' +
-            ' * http://lab.hakim.se/reveal-js\n' +
-            ' * MIT licensed\n' +
-            ' *\n' +
-            ' * Copyright (C) 2014 Hakim El Hattab, http://hakim.se\n' +
-            ' */'
-        },
-
-        qunit: {
-            files: [ 'test/*.html' ]
-        },
 
         uglify: {
+          dev: {
             options: {
-                banner: '<%= meta.banner %>\n'
+              mangle: {
+                reserved: ['jQuery']
+              }
             },
-            build: {
-                src: 'src/js/reveal.js',
-                dest: 'dist/js/reveal.min.js'
-            }
+            files: [{
+              expand: true,
+              src: ['dist/js/*.js', '!dist/js/*.min.js'],
+              dest: 'dist',
+              cwd: '.',
+              rename: function (dst, src) {
+                return src.replace('.js', '.min.js');
+              }
+            }]
+          }
         },
 
         sass: {
             main: {
                 files: {
-                    'dist/css/reveal.css': 'src/css/theme/reveal.scss',
-                    'dist/css/default.css': 'src/css/theme/source/default.scss',
-                    'dist/css/gdicool.css': 'src/css/theme/source/gdicool.scss',
-                    'dist/css/gdilight.css': 'src/css/theme/source/gdilight.scss',
-                    'dist/css/gdisunny.css': 'src/css/theme/source/gdisunny.scss',
-                    'dist/css/application.css': 'src/css/application.scss'
+                    'dist/css/application.css': 'src/scss/application.scss'
                 }
             }
         },
@@ -101,11 +91,11 @@ module.exports = function(grunt) {
 
         watch: {
             main: {
-                files: [ 'Gruntfile.js', 'src/js/reveal.js', 'src/css/theme/reveal.scss' ],
+                files: [ 'src/**/*' ],
                 tasks: 'default'
             },
             css: {
-                files: [ 'src/css/application.scss' ],
+                files: [ 'src/scss/**/*.scss' ],
                 tasks: 'sass'
             },
             theme: {
@@ -118,37 +108,78 @@ module.exports = function(grunt) {
             bsFiles: {
                 src : [
                     'dist/css/**/*.css',
-                    '*.html'
+                    'dist/*.html'
                 ]
             },
             options: {
                 watchTask: true,
-                server: './'
+                server: './dist'
             }
-        }
+        },
+
+        copy: {
+          main: {
+            files: [
+              {
+                expand: true,
+                cwd: 'src/',
+                src: ['**/*.html'],
+                dest: 'dist'
+              },
+              {
+                expand: true,
+                cwd: 'src/fonts/',
+                src: ['**'],
+                dest: 'dist/fonts'
+              },
+              {
+                expand: true,
+                cwd: 'src/plugins/',
+                src: ['**'],
+                dest: 'dist/plugins'
+              },
+              {
+                expand: true,
+                cwd: 'src/img/',
+                src: ['**'],
+                dest: 'dist/img'
+              },
+              {
+                expand: true,
+                cwd: 'src/js/',
+                src: ['**'],
+                dest: 'dist/js'
+              }
+            ]
+          }
+        },
+
+        clean: ['dist']
 
     });
 
     // Dependencies
-    grunt.loadNpmTasks( 'grunt-contrib-qunit' );
+    grunt.loadNpmTasks( 'grunt-browser-sync' );
+    grunt.loadNpmTasks( 'grunt-contrib-clean' );
+    // grunt.loadNpmTasks( 'grunt-contrib-concat' );
+    grunt.loadNpmTasks( 'grunt-contrib-copy' );
     grunt.loadNpmTasks( 'grunt-contrib-jshint' );
+    grunt.loadNpmTasks( 'grunt-contrib-sass' );
     grunt.loadNpmTasks( 'grunt-contrib-uglify' );
     grunt.loadNpmTasks( 'grunt-contrib-watch' );
-    grunt.loadNpmTasks( 'grunt-contrib-sass' );
-    grunt.loadNpmTasks( 'grunt-browser-sync' );
     grunt.loadNpmTasks( 'grunt-postcss' );
     grunt.loadNpmTasks( 'grunt-zip' );
 
     // Default task
-    grunt.registerTask( 'default', [ 'jshint', 'sass', 'postcss', 'uglify', 'qunit', 'browserSync', 'watch' ] );
+    grunt.registerTask( 'default', [ 'clean', 'copy', 'jshint', 'sass', 'postcss', 'uglify' ] );
+
+    // Start Server
+    grunt.registerTask( 'server', [ 'default', 'browserSync', 'watch' ] );
 
     // Theme task
     grunt.registerTask( 'themes', [ 'sass' ] );
 
     // Package presentation to archive
     grunt.registerTask( 'package', [ 'default', 'zip' ] );
-
-    // Run tests
-    grunt.registerTask( 'test', [ 'jshint', 'qunit' ] );
 
 };

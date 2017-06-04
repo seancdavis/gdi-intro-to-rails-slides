@@ -1,0 +1,20 @@
+@import 'theme/reveal';
+
+@import 'theme/source/default';
+// @import 'theme/source/gdicool';
+@import 'theme/source/gdilight';
+// @import 'theme/source/gdisunny';
+
+.reveal {
+  .text-white {
+    color: white;
+  }
+
+  .text-black {
+    color: black;
+  }
+
+  li {
+    margin-bottom: 12px;
+  }
+}

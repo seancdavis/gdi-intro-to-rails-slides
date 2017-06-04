@@ -1323,7 +1323,7 @@ validates_presence_of :name
             So, right inside the layout, we can add a header:
           </p>
           <pre class="fragment"><code class="ruby" data-trim>
-<body>
+&lt;body>
   <header>
     <h1>
       <%= link_to 'GreatGraders', root_path %>
@@ -1339,7 +1339,7 @@ validates_presence_of :name
     <hr>
   </header>
   <%= yield %>
-</body>
+&lt;/body>
           </code></pre>
           <p class="fragment">
             It works, but it's pretty ugly. So why don't we move it into its
@@ -1357,12 +1357,342 @@ validates_presence_of :name
             In the layout, we simply need to make sure we render that partial.
           </p>
           <pre class="fragment"><code class="ruby" data-trim>
-<body>
+&lt;body>
   <%= render 'header' %>
   <%= yield %>
-</body>
+&lt;/body>
           </code></pre>
         </section>
+
+        <section>
+          <h2>Grouping Students and Teachers</h2>
+          <p>
+            Now we need to find a way to group students and teachers together,
+            so we can track the students each teacher is responsible for.
+          </p>
+          <p class="fragment">
+            Let's create a Classroom model that is <em>associated</em> to
+            students and teachers.
+          </p>
+          <pre class="fragment"><code class="nohighlight" data-trim>
+$ rails generate scaffold classroom room_number:integer
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Grouping Students and Teachers</h2>
+          <p>
+            Don't forget to add a validation so we can't create blank
+            classrooms.
+          </p>
+          <pre class="fragment"><code class="ruby" data-trim>
+class Classroom < ApplicationRecord
+  validates_presence_of :room_number
+end
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Grouping Students and Teachers</h2>
+          <p>
+            Now we want to make sure we can navigate to classrooms from the
+            header
+          </p>
+          <pre class="fragment"><code class="ruby" data-trim>
+<li>
+  <%= link_to 'Classrooms', classrooms_path %>
+</li>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Grouping Students and Teachers</h2>
+          <p>
+            But how do we connect teachers and students to a classroom?
+          </p>
+          <p class="fragment">
+            That's where associations come in.
+          </p>
+          <p class="fragment">
+            We want a new column on teacher and students to assign them to
+            a classroom.
+          </p>
+          <p class="fragment">
+            This is called a one-to-many relationship, because one classroom
+            has many teachers/students.
+          </p>
+        </section>
+
+        <section>
+          <h2>Grouping Students and Teachers</h2>
+          <p>
+            To change an existing table we use a custom migration.
+          </p>
+          <pre class="fragment"><code class="nohighlight" data-trim>
+$ rails generate migration add_classroom_id_to_students_and_teachers
+          </code></pre>
+          <p class="fragment">
+            The name we chose for the migration is abitrary, but is meant to be
+            semantic and representative of the desired action.
+          </p>
+          <p class="fragment">
+            Notice the output:
+          </p>
+          <pre class="fragment"><code class="nohighlight" data-trim>
+      invoke  active_record
+      create    db/migrate/20170604130906_add_classroom_id_to_students_and_teachers.rb
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Grouping Students and Teachers</h2>
+          <p>
+            Go find that file and customize it with your new columns:
+          </p>
+          <pre class="fragment"><code class="ruby" data-trim>
+class AddClassroomIdToStudentsAndTeachers < ActiveRecord::Migration[5.1]
+  def change
+    add_column :students, :classroom_id, :integer
+    add_column :teachers, :classroom_id, :integer
+  end
+end
+          </code></pre>
+          <p class="fragment">
+            This tells rails to add a <code>classroom_id</code> column to the
+            students table and the teachers table.
+          </p>
+        </section>
+
+        <section>
+          <h2>Grouping Students and Teachers</h2>
+          <p>
+            Now we can migrate.
+          </p>
+          <pre class="fragment"><code class="nohighlight" data-trim>
+$ rails db:migrate
+          </code></pre>
+          <p class="fragment">
+            But rails still doesn't know it has an association. You have to
+            inform rails that you want the models associated.
+          </p>
+        </section>
+
+        <section>
+          <h2>Grouping Students and Teachers</h2>
+          <p>
+            For the student and teacher model, you want to say they each
+            <strong>belong to</strong> a classroom.
+          </p>
+          <p class="fragment">
+            The resulting student model:
+          </p>
+          <pre class="fragment"><code class="ruby" data-trim>
+class Student < ApplicationRecord
+
+  belongs_to :classroom
+
+  validates_presence_of :name
+
+end
+          </code></pre>
+          <p class="fragment">
+            Do the same thing for teachers.
+          </p>
+        </section>
+
+        <section>
+          <h2>Grouping Students and Teachers</h2>
+          <p>
+            Classrooms <em>have many</em> students and teachers. Its model
+            looks like this:
+          </p>
+          <pre class="fragment"><code class="ruby" data-trim>
+class Classroom < ApplicationRecord
+
+  has_many :students
+  has_many :teachers
+
+  validates_presence_of :room_number
+
+end
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Grouping Students and Teachers</h2>
+          <p>
+            Now we need to be able to assign a student and teacher to a
+            classroom.
+          </p>
+          <p class="fragment">
+            First, we want to add the <code>classroom_id</code> to the student
+            form.
+          </p>
+          <pre class="fragment"><code class="erb" data-trim>
+  <div class="field">
+    <%= form.label :classroom_id %>
+    <%= select student, :classroom_id, @classrooms %>
+  </div>
+          </code></pre>
+          <p class="fragment">
+            That causes an error! Why?
+          </p>
+          <p class="fragment">
+            Because we didn't set <code>@classrooms</code> to anything.
+          </p>
+        </section>
+
+        <section>
+          <h2>Grouping Students and Teachers</h2>
+          <p>
+            Make it available in the students controller
+          </p>
+          <pre class="fragment"><code class="ruby" data-trim>
+before_action :set_classrooms, only: [:new, :create, :edit, :update]
+
+# ...
+
+private
+
+  def set_classrooms
+    @classrooms = Classroom.all
+  end
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Grouping Students and Teachers</h2>
+          <p>
+            That works but it's super ugly, isn't it?
+            <br>
+            How do we know which classroom is which?
+          </p>
+          <p class="fragment">
+            Rails uses the <code>to_s</code> instance method to resolve the
+            value for this select.
+          </p>
+          <p class="fragment">
+            Unfortunately, adjusting this will lead to another issue, so let's
+            try this instead:
+          </p>
+          <pre class="fragment"><code class="ruby" data-trim>
+def set_classrooms
+  @classrooms = Classroom.all.collect { |c| [c.room_number, c.id] }
+end
+          </code></pre>
+          <p class="fragment">
+            Refresh the student form and it should look good and work fine.
+          </p>
+        </section>
+
+        <section>
+          <h2>Grouping Students and Teachers</h2>
+          <p>
+            Now, do the same thing, but to teachers.
+          </p>
+        </section>
+
+        <section>
+          <h2>Grouping Students and Teachers</h2>
+          <p>
+            It's great once it works, but we aren't sure which classroom
+            teachers and students are in without going into the form view.
+          </p>
+          <p class="fragment">
+            So, let's add that visibility to the index views.
+          </p>
+          <pre class="fragment"><code class="erb" data-trim>
+&lt;table>
+  &lt;thead>
+    &lt;tr>
+      &lt;th>Name&lt;/th>
+      &lt;th>Age&lt;/th>
+      &lt;th>Classroom&lt;/th>
+      &lt;th colspan="3">&lt;/th>
+    &lt;/tr>
+  &lt;/thead>
+
+  &lt;tbody>
+    &lt;% @students.each do |student| %>
+      &lt;tr>
+        &lt;td>&lt;%= student.name %>&lt;/td>
+        &lt;td>&lt;%= student.age %>&lt;/td>
+        &lt;td>&lt;%= student.classroom_id %>&lt;/td>
+        &lt;td>&lt;%= link_to 'Show', student %>&lt;/td>
+        &lt;td>&lt;%= link_to 'Edit', edit_student_path(student) %>&lt;/td>
+        &lt;td>&lt;%= link_to 'Delete', student, method: :delete, data: { confirm: 'Are you sure?' } %>&lt;/td>
+      &lt;/tr>
+    &lt;% end %>
+  &lt;/tbody>
+&lt;/table>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Grouping Students and Teachers</h2>
+          <p>
+            That works, but wouldn't we rather have the room number?
+          </p>
+          <pre class="fragment"><code class="erb" data-trim>
+<td><%= student.classroom.room_number %></td>
+          </code></pre>
+          <p class="fragment">
+            WARNING! This causes what we call an N+1 problem. Solving it is
+            outside the scope of this course.
+          </p>
+        </section>
+
+        <section>
+          <h2>Grouping Students and Teachers</h2>
+          <p>
+            Do the same thing for teachers.
+          </p>
+        </section>
+
+        <section>
+          <h2>Grouping Students and Teachers</h2>
+          <p>
+            On a classroom show view, say we wanted to list the students and
+            teachers, how would we do that?
+          </p>
+          <p class="fragment">
+            Maybe something like this?
+          </p>
+          <pre class="fragment"><code class="erb" data-trim>
+&lt;h2>Teachers&lt;/h2>
+&lt;ul>
+  &lt;% @classroom.teachers.each do |teacher| %>
+    &lt;li>&lt;%= teacher.name %>&lt;/li>
+  &lt;% end %>
+&lt;/ul>
+
+&lt;h2>Students&lt;/h2>
+&lt;ul>
+  &lt;% @classroom.students.each do |student| %>
+    &lt;li>&lt;%= student.name %>&lt;/li>
+  &lt;% end %>
+&lt;/ul>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Pause for Ruby Magic</h2>
+          <p>
+            This is way outside the scope, but check this out. You can write
+            the same code from the previous slide like this:
+          </p>
+          <pre class="fragment"><code class="erb" data-trim>
+&lt;% [Student, Teacher].each do |model| %>
+  &lt;h2>&lt;%= model.to_s.pluralize.titleize %>&lt;/h2>
+  &lt;ul>
+    &lt;% @classroom.send(model.table_name).each do |obj| %>
+      &lt;li>&lt;%= obj.name %>&lt;/li>
+    &lt;% end %>
+  &lt;/ul>
+&lt;% end %>
+          </code></pre>
+        </section>
+
 
 
 

@@ -1678,7 +1678,7 @@ end
         <section>
           <h2>Pause for Ruby Magic</h2>
           <p>
-            This is way outside the scope, but check this out. You can write
+            This is outside the scope, but check this out. You can write
             the same code from the previous slide like this:
           </p>
           <pre class="fragment"><code class="erb" data-trim>
@@ -1693,6 +1693,176 @@ end
           </code></pre>
         </section>
 
+        <section>
+          <h1>Deploying To Heroku!</h1>
+        </section>
+
+        <section>
+          <h2>Deploying To Heroku!</h2>
+          <p>
+            First things, first, sign up for a Heroku account
+            (https://heroku.com).
+          </p>
+          <p class="fragment">
+            Create a new app and give it a unique name.
+          </p>
+        </section>
+
+        <section>
+          <h2>Deploying To Heroku!</h2>
+          <p>
+            Login to Heroku on the command line
+          </p>
+          <pre class="fragment"><code class="nohighlight" data-trim>
+$ heroku login
+          </code></pre>
+          <p class="fragment">
+            And let's add git and register our project.
+            (Git is the coolest tool ever, and GDI offers a course on it.)
+          </p>
+          <pre class="fragment"><code class="nohighlight" data-trim>
+$ git init
+$ heroku git:remote -a gdi-test-classroom-manager
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Deploying To Heroku!</h2>
+          <p>
+            Next, we have to add a git commit to be able to deploy.
+          </p>
+          <p>
+            You'll have to do this every time you make a new change you want
+            to deploy.
+          </p>
+          <pre class="fragment"><code class="nohighlight" data-trim>
+$ git add .
+$ git commit -am "make it better"
+          </code></pre>
+          <p class="fragment">
+            Now, deploy!
+          </p>
+          <pre class="fragment"><code class="nohighlight" data-trim>
+$ git push heroku master
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Deploying To Heroku!</h2>
+          <p>
+            Oh no! It broke because we don't have our database configured
+            correctly for heroku.
+          </p>
+          <p class="fragment">
+            Heroku uses PostgreSQL for its database, so we need to set that
+            up for production.
+          </p>
+          <p class="fragment">
+            First, in our Gemfile, adjust the sqlite3 gem:
+          </p>
+          <pre class="fragment"><code class="ruby" data-trim>
+group :development, :test do
+  gem 'sqlite3'
+end
+
+group :production do
+  gem 'pg'
+end
+          </code></pre>
+          <p class="fragment">
+            Then in the database configuration change the production section.
+          </p>
+          <pre class="fragment"><code class="ruby" data-trim>
+production:
+  adapter: postgresql
+  database: my_database_production
+  pool: 5
+  timeout: 5000
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Deploying To Heroku!</h2>
+          <p>
+            Commit the change
+          </p>
+          <pre class="fragment"><code class="nohighlight" data-trim>
+$ git add .
+$ git commit -m "postgres"
+          </code></pre>
+          <p class="fragment">
+            And deploy again:
+          </p>
+          <pre class="fragment"><code class="nohighlight" data-trim>
+$ git push heroku master
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Deploying To Heroku!</h2>
+          <p>
+            Oh farts! The dreaded Rails production error:
+          </p>
+          <img src="dist/img/rails-500.png" alt="">
+        </section>
+
+        <section>
+          <h2>Deploying To Heroku!</h2>
+          <p>
+            You can inspect the logs from Heroku.
+          </p>
+          <pre class="fragment"><code class="nohighlight" data-trim>
+$ heroku logs
+          </code></pre>
+          <p class="fragment">
+            Notice the error message:
+          </p>
+          <pre class="fragment"><code class="nohighlight" data-trim>
+ActionView::Template::Error (PG::UndefinedTable: ERROR:  relation "students" does not exist
+          </code></pre>
+          <p class="fragment">
+            Maybe we forgot to migrate?
+          </p>
+        </section>
+
+        <section>
+          <h2>Deploying To Heroku!</h2>
+          <p>
+            Run the migration command on Heroku
+          </p>
+          <pre class="fragment"><code class="nohighlight" data-trim>
+$ heroku run rails db:migrate
+          </code></pre>
+          <p class="fragment">
+            Check the app now and it should be working properly!
+          </p>
+        </section>
+
+        <section>
+          <h2>The Asset Pipeline</h2>
+          <p>
+            Your app has two files that consolidate all styles:
+            <code>app/assets/stylesheets/application.css</code> and
+            <code>app/assets/javascripts/application.js</code>
+          </p>
+          <p>
+            The Rails asset pipeline is super powerful
+          </p>
+        </section>
+
+        <section>
+          <h2>Some Closing Thoughts</h2>
+          <ul>
+            <li class="fragment">
+              Gems are super useful. Checkout popular ones like Devise,
+              SimpleForm, Paperclip, Kaminari.
+            </li>
+            <li class="fragment">
+              Testing is invaluable and should become part of your practice
+              once you're comfortable within the framework.
+            </li>
+          </ul>
+        </section>
 
 
 

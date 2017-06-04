@@ -1,7 +1,1 @@
-{
-"version": 3,
-"mappings": "AACE,mBAAY;EACV,KAAK,EAAE,KAAK;AAGd,mBAAY;EACV,KAAK,EAAE,KAAK;AAGd,UAAG;EACD,aAAa,EAAE,IAAI",
-"sources": ["../../src/css/application.scss"],
-"names": [],
-"file": "application.css"
-}
+{"version":3,"sources":["../../src/css/application.scss"],"names":[],"mappings":"AACE,oBACE,UAAY,CAAA,AAGd,oBACE,UAAY,CAAA,AAGd,WACE,kBAAmB,CAAA","file":"application.css"}

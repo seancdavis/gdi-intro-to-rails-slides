@@ -348,12 +348,12 @@ Rails:
             We're going to use a Rails scaffold to add all the files we need
             for students (along with some extras we won't use):
           </p>
-          <pre class="fragment"><code class="nohighlight" data-trim>
+          <pre class="fragment"><code class="console" data-trim>
 $ rails generate scaffold student name:string age:integer
           </code></pre>
           <br>
           <p class="fragment">Notice the output:</p>
-          <pre class="fragment"><code class="nohighlight" data-trim>
+          <pre class="fragment"><code class="console" data-trim>
 invoke  active_record
 create    db/migrate/20170601105024_create_students.rb
 create    app/models/student.rb
@@ -409,7 +409,7 @@ create    app/assets/stylesheets/scaffolds.scss
           <br>
           <div class="fragment">
             <p>This:</p>
-            <pre><code class="nohighlight" data-trim>
+            <pre><code class="ruby" data-trim>
 create_table :students do |t|
   t.string :name
   t.integer :age
@@ -423,7 +423,7 @@ end
             <p>
               Is the equivalent of this, in SQL code:
             </p>
-            <pre><code class="nohighlight" data-trim>
+            <pre><code class="console" data-trim>
   CREATE TABLE "students" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "age" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL);
             </code></pre>
           </div>
@@ -437,14 +437,14 @@ end
           <br>
           <div class="fragment">
             <p>Create the database:</p>
-            <pre><code class="nohighlight" data-trim>
+            <pre><code class="console" data-trim>
 $ rails db:create
             </code></pre>
           </div>
           <br>
           <div class="fragment">
             <p>Run the migration:</p>
-            <pre><code class="nohighlight" data-trim>
+            <pre><code class="console" data-trim>
 $ rails db:migrate
             </code></pre>
           </div>
@@ -555,7 +555,7 @@ $ rails routes
             <p>
               And the output:
             </p>
-            <pre><code class="nohighlight">
+            <pre><code class="console">
       Prefix Verb   URI Pattern                  Controller#Action
     students GET    /students(.:format)          students#index
              POST   /students(.:format)          students#create
@@ -613,7 +613,7 @@ $ rails routes
             <p>
               Notice the new line at the bottom:
             </p>
-            <pre><code class="nohighlight">
+            <pre><code class="console">
         root GET    /                            students#index
             </code></pre>
           </div>
@@ -1155,7 +1155,7 @@ end
             <code>/students/1/edit</code>. Remember <code>rails routes</code>
             for the edit action?
           </p>
-          <pre class="fragment"><code class="nohighlight" data-trim>
+          <pre class="fragment"><code class="console" data-trim>
 edit_student GET    /students/:id/edit(.:format) students#edit
           </code></pre>
           <p class="fragment">
@@ -1236,13 +1236,13 @@ edit_student GET    /students/:id/edit(.:format) students#edit
           <p class="fragment">
             Run the scaffold generator
           </p>
-          <pre class="fragment"><code class="nohighlight" data-trim>
+          <pre class="fragment"><code class="console" data-trim>
 $ rails generate scaffold teacher name:string hired_at:date
           </code></pre>
           <p class="fragment">
             Run the migration.
           </p>
-          <pre class="fragment"><code class="nohighlight" data-trim>
+          <pre class="fragment"><code class="console" data-trim>
 $ rails db:migrate
           </code></pre>
           <p class="fragment">
@@ -1347,7 +1347,7 @@ validates_presence_of :name
             Let's create a Classroom model that is <em>associated</em> to
             students and teachers.
           </p>
-          <pre class="fragment"><code class="nohighlight" data-trim>
+          <pre class="fragment"><code class="console" data-trim>
 $ rails generate scaffold classroom room_number:integer
           </code></pre>
         </section>
@@ -1401,7 +1401,7 @@ end
           <p>
             To change an existing table we use a custom migration.
           </p>
-          <pre class="fragment"><code class="nohighlight" data-trim>
+          <pre class="fragment"><code class="console" data-trim>
 $ rails generate migration add_classroom_id_to_students_and_teachers
           </code></pre>
           <p class="fragment">
@@ -1411,7 +1411,7 @@ $ rails generate migration add_classroom_id_to_students_and_teachers
           <p class="fragment">
             Notice the output:
           </p>
-          <pre class="fragment"><code class="nohighlight" data-trim>
+          <pre class="fragment"><code class="console" data-trim>
       invoke  active_record
       create    db/migrate/20170604130906_add_classroom_id_to_students_and_teachers.rb
           </code></pre>
@@ -1441,7 +1441,7 @@ end
           <p>
             Now we can migrate.
           </p>
-          <pre class="fragment"><code class="nohighlight" data-trim>
+          <pre class="fragment"><code class="console" data-trim>
 $ rails db:migrate
           </code></pre>
           <p class="fragment">
@@ -1686,14 +1686,14 @@ end
           <p>
             Login to Heroku on the command line
           </p>
-          <pre class="fragment"><code class="nohighlight" data-trim>
+          <pre class="fragment"><code class="console" data-trim>
 $ heroku login
           </code></pre>
           <p class="fragment">
             And let's add git and register our project.
             (Git is the coolest tool ever, and GDI offers a course on it.)
           </p>
-          <pre class="fragment"><code class="nohighlight" data-trim>
+          <pre class="fragment"><code class="console" data-trim>
 $ git init
 $ heroku git:remote -a gdi-test-classroom-manager
           </code></pre>
@@ -1708,14 +1708,14 @@ $ heroku git:remote -a gdi-test-classroom-manager
             You'll have to do this every time you make a new change you want
             to deploy.
           </p>
-          <pre class="fragment"><code class="nohighlight" data-trim>
+          <pre class="fragment"><code class="console" data-trim>
 $ git add .
 $ git commit -am "make it better"
           </code></pre>
           <p class="fragment">
             Now, deploy!
           </p>
-          <pre class="fragment"><code class="nohighlight" data-trim>
+          <pre class="fragment"><code class="console" data-trim>
 $ git push heroku master
           </code></pre>
         </section>
@@ -1759,14 +1759,14 @@ production:
           <p>
             Commit the change
           </p>
-          <pre class="fragment"><code class="nohighlight" data-trim>
+          <pre class="fragment"><code class="console" data-trim>
 $ git add .
 $ git commit -m "postgres"
           </code></pre>
           <p class="fragment">
             And deploy again:
           </p>
-          <pre class="fragment"><code class="nohighlight" data-trim>
+          <pre class="fragment"><code class="console" data-trim>
 $ git push heroku master
           </code></pre>
         </section>
@@ -1784,13 +1784,13 @@ $ git push heroku master
           <p>
             You can inspect the logs from Heroku.
           </p>
-          <pre class="fragment"><code class="nohighlight" data-trim>
+          <pre class="fragment"><code class="console" data-trim>
 $ heroku logs
           </code></pre>
           <p class="fragment">
             Notice the error message:
           </p>
-          <pre class="fragment"><code class="nohighlight" data-trim>
+          <pre class="fragment"><code class="console" data-trim>
 ActionView::Template::Error (PG::UndefinedTable: ERROR:  relation "students" does not exist
           </code></pre>
           <p class="fragment">
@@ -1803,7 +1803,7 @@ ActionView::Template::Error (PG::UndefinedTable: ERROR:  relation "students" doe
           <p>
             Run the migration command on Heroku
           </p>
-          <pre class="fragment"><code class="nohighlight" data-trim>
+          <pre class="fragment"><code class="console" data-trim>
 $ heroku run rails db:migrate
           </code></pre>
           <p class="fragment">
@@ -1841,6 +1841,14 @@ $ heroku run rails db:migrate
 
     <script src="js/head.min.js"></script>
     <script src="js/reveal.min.js"></script>
+    <!--<script src="plugins/highlight/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>-->
+
+    <!--<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">-->
+    <!--<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>-->
+    <script src="plugins/highlight/highlight.pack.js"></script>
+
+    <script>hljs.initHighlightingOnLoad();</script>
 
     <script>
 
@@ -1855,15 +1863,24 @@ $ heroku run rails db:migrate
         transition: 'fade', // none/fade/slide/convex/concave/zoom
 
         // Optional reveal.js plugins
-        dependencies: [
-          // { src: 'dist/js/classList.js', condition: function() { return !document.body.classList; } },
-          { src: 'plugins/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-          { src: 'plugins/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-          { src: 'plugins/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
-          { src: 'plugins/zoom-js/zoom.js', async: true },
-          // { src: 'plugins/notes/notes.js', async: true },
-          // { src: 'plugins/accessibility-helper/js/accessibility-helper.js', async: true, condition: function() { return !!document.body.classList; } }
-        ]
+        // dependencies: [
+        //   // { src: 'dist/js/classList.js', condition: function() { return !document.body.classList; } },
+        //   // { src: 'plugins/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        //   // { src: 'plugins/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        //   // {
+        //   //   src: 'plugins/highlight/highlight.js',
+        //   //   async: true,
+        //   //   condition: function() {
+        //   //     return !!document.querySelector( 'pre code' );
+        //   //   },
+        //   //   callback: function() {
+        //   //     hljs.initHighlightingOnLoad();
+        //   //   }
+        //   // },
+        //   // { src: 'plugins/zoom-js/zoom.js', async: true },
+        //   // { src: 'plugins/notes/notes.js', async: true },
+        //   // { src: 'plugins/accessibility-helper/js/accessibility-helper.js', async: true, condition: function() { return !!document.body.classList; } }
+        // ]
       });
 
     </script>

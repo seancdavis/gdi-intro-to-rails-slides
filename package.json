@@ -4,7 +4,7 @@
   "description": "Girl Develop It framework for easily creating beautiful presentations using HTML in GDI theme. Forked from Hakim El Hattab's reveal.js",
   "homepage": "http://girldevelopit.github.io/gdi-slides-template",
   "scripts": {
-    "start": ""
+    "start": "grunt server"
   },
   "author": {
     "name": "Hakim El Hattab",

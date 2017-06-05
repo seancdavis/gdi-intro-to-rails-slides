@@ -26,7 +26,7 @@
 
         <section>
           <img src="img/circle-gdi-logo.png" alt="GDI Logo" class="noborder"/>
-          <h1>Ruby on Rails</h1>
+          <h1>Intro To Rails</h1>
           <p>Instructor: <strong>Sean C Davis</strong></p>
           <p>
             <br>
@@ -45,21 +45,83 @@
         </section>
 
         <section>
-          <h2>Agenda</h2>
+          <h2>Introduction</h2>
+          <p>Who are you?</p>
           <ul>
-            <li>Session 1: Introduction</li>
-            <li>Session 2: Something Else</li>
-            <li>Session 3: Introduction</li>
-            <li>Session 4: Introduction</li>
+            <li class="fragment">
+              What's your name?
+            </li>
+            <li class="fragment">
+              What do you want to learn? (Why are you here?)
+            </li>
+            <li class="fragment">
+              Where is your favorite place in the world?
+            </li>
           </ul>
         </section>
 
         <section>
-          <h1>Session 1: Introduction</h1>
+          <h2>Class Rules</h2>
+          <ul>
+            <li class="fragment">
+              This is a safe place
+            </li>
+            <li class="fragment">
+              There are no dumb questions
+            </li>
+            <li class="fragment">
+              Respect each other
+            </li>
+            <li class="fragment">
+              Be curious and ask questions
+            </li>
+            <li class="fragment">
+              Have fun!
+            </li>
+          </ul>
         </section>
 
         <section>
-          <h1>A Good Developer</h1>
+          <h2>Teams</h2>
+          <p>
+            We're going to be actively learning throughout these sessions.
+          </p>
+          <p>
+            Each team needs:
+          </p>
+          <ul>
+            <li class="fragment">
+              2 people
+            </li>
+            <li class="fragment">
+              A name
+            </li>
+            <li class="fragment">
+              A mascot
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Sessions</h2>
+          <ol>
+            <li>Intro / Background</li>
+            <li>CRUD</li>
+            <li>Relationships</li>
+            <li>Deploy</li>
+          </ol>
+        </section>
+
+        <section>
+          <h1>Session 1: Intro / Background</h1>
+        </section>
+
+        <section>
+          <h2>A Good Developer</h2>
+          <p>
+            Everyone can be a developer, but there are a few points to
+            understand.
+          </p>
         </section>
 
         <section data-background-image="https://media.giphy.com/media/yow6i0Zmp7G24/giphy.gif">
@@ -279,7 +341,23 @@ book.reverse_title # => 'naitraM ehT'
         </section>
 
         <section>
-          <h1>Let's Write Some Code</h1>
+          <h2>Homework!</h2>
+          <p>
+            If you aren't familiar with HTML take a brief introductory
+            tutorial or course.
+          </p>
+        </section>
+
+        <section>
+          <h1>Session 2: CRUD</h1>
+        </section>
+
+        <section>
+          <h2>Let's Write Some Code</h2>
+          <p>
+            Today we're going to focus on building out the logic and
+            interactivity behind the student model.
+          </p>
         </section>
 
         <section>
@@ -291,8 +369,8 @@ book.reverse_title # => 'naitraM ehT'
             <li class="fragment">Student</li>
             <li class="fragment">Teacher</li>
             <li class="fragment">Classroom</li>
-            <li class="fragment">Assignment</li>
-            <li class="fragment">Score</li>
+            <!--<li class="fragment">Assignment</li>-->
+            <!--<li class="fragment">Score</li>-->
           </ul>
         </section>
 
@@ -320,7 +398,7 @@ book.reverse_title # => 'naitraM ehT'
           <p>
             We can see the tasks available to us by running:
           </p>
-<pre class="fragment"><code class="bash">$ rails generate
+<pre class="fragment"><code class="shell-command">$ rails generate
 
 Rails:
   assets
@@ -343,16 +421,24 @@ Rails:
         </section>
 
         <section>
-          <h2>Student Scaffold</h2>
+          <h2>Team Challenge</h2>
           <p>
-            We're going to use a Rails scaffold to add all the files we need
-            for students (along with some extras we won't use):
+            What should I run on the command line to create a scaffold for a
+            student model with its attributes being a name as a string and
+            an age as an integer?
           </p>
-          <pre class="fragment"><code class="console" data-trim>
+          <div class="fragment">
+            <br>
+            <h3>Answer</h3>
+            <pre><code class="console" data-trim>
 $ rails generate scaffold student name:string age:integer
-          </code></pre>
-          <br>
-          <p class="fragment">Notice the output:</p>
+            </code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Student Scaffold</h2>
+          <p>Notice the output of that command:</p>
           <pre class="fragment"><code class="console" data-trim>
 invoke  active_record
 create    db/migrate/20170601105024_create_students.rb
@@ -403,8 +489,9 @@ create    app/assets/stylesheets/scaffolds.scss
         <section>
           <h2>Data Migration</h2>
           <p>
-            Data migrations run a task within the database (so you don't have
-            to write ugly SQL code).
+            Data migrations run a task within the database
+            <br>
+            (so you don't have to write ugly SQL code).
           </p>
           <br>
           <div class="fragment">
@@ -430,20 +517,29 @@ end
         </section>
 
         <section>
-          <h2>Data Migration</h2>
+          <h2>Team Challenge</h2>
           <p>
-            Now let's make the database run the code.
+            We have a data migration file ready, but we don't have a database.
+            <br>
+            How do I create a database?
           </p>
-          <br>
           <div class="fragment">
-            <p>Create the database:</p>
+            <br>
+            <h3>Answer</h3>
             <pre><code class="console" data-trim>
 $ rails db:create
             </code></pre>
           </div>
-          <br>
+        </section>
+
+        <section>
+          <h2>Team Challenge</h2>
+          <p>
+            Now that we have a database, how do we run the migration?
+          </p>
           <div class="fragment">
-            <p>Run the migration:</p>
+            <br>
+            <h3>Answer</h3>
             <pre><code class="console" data-trim>
 $ rails db:migrate
             </code></pre>
@@ -453,8 +549,9 @@ $ rails db:migrate
         <section>
           <h2>Data Migration</h2>
           <p>
-            A new file was created for you: <code>db/schema.rb</code>.
-            It stores a snapshot of your database's structure.
+            During the first migration, a new file gets created for you:
+            <code>db/schema.rb</code>. It stores a snapshot of your database's
+            structure.
           </p>
           <br>
           <div class="fragment">
@@ -492,12 +589,50 @@ end
         </section>
 
         <section>
+          <h2>Rails Console</h2>
+          <p>
+            Before we go any further, let's stop for a minute and talk about
+            the rails console and server.
+          </p>
+          <p class="fragment">
+            The console is a live and interactive program to work with your
+            app's data.
+          </p>
+          <div class="fragment">
+            <p>
+              Start it by running:
+            </p>
+            <pre><code class="console" data-trim>
+$ rails console
+            </code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Rails Console</h2>
+          <p>
+            We can interact with objects within our app. Here are a few
+            examples:
+          </p>
+          <pre><code class="console" data-trim>
+&gt; Student.all
+=> []
+
+&gt; Student.new
+=> #&lt;Student id: nil, name: nil, age: nil, created_at: nil, updated_at: nil, classroom_id: nil>
+          </code></pre>
+          <p class="fragment">
+            We will come back to this on occasion for examples.
+          </p>
+        </section>
+
+        <section>
           <h2>Rails Server</h2>
           <p>
-            Before we go any further, let's start the rails server and see
-            what happens.
+            And before we jump into the code, let's see what our app looks like
+            by starting the server.
           </p>
-          <pre><code class="ruby" data-trim>
+          <pre class="fragment"><code class="console" data-trim>
 $ rails server
           </code></pre>
         </section>
@@ -510,9 +645,12 @@ $ rails server
             Where the heck did it come from?
           </p>
           <img src="img/rails-home-page.png" alt="">
-          <br>
-          <p class="fragment">
-            This is the default Rails home page because we aren't telling
+        </section>
+
+        <section>
+          <h2>Rails Server</h2>
+          <p>
+            It's the default Rails home page because we aren't telling
             Rails what to do with our home page.
           </p>
         </section>
@@ -542,31 +680,37 @@ end
         </section>
 
         <section>
-          <h2>Routes</h2>
+          <h2>Team Challenge</h2>
           <p>
-            We can run another task to have Rails show us what our routes
-            really are.
+            I want to see all the routes available in my application.
+            <br>
+            How do I do that?
           </p>
-          <pre><code class="ruby" data-trim>
-$ rails routes
-          </code></pre>
-          <br>
           <div class="fragment">
-            <p>
-              And the output:
-            </p>
-            <pre><code class="console">
-      Prefix Verb   URI Pattern                  Controller#Action
-    students GET    /students(.:format)          students#index
-             POST   /students(.:format)          students#create
- new_student GET    /students/new(.:format)      students#new
-edit_student GET    /students/:id/edit(.:format) students#edit
-     student GET    /students/:id(.:format)      students#show
-             PATCH  /students/:id(.:format)      students#update
-             PUT    /students/:id(.:format)      students#update
-             DELETE /students/:id(.:format)      students#destroy
+            <br>
+            <h3>Answer</h3>
+            <pre><code class="console" data-trim>
+$ rails routes
             </code></pre>
           </div>
+        </section>
+
+        <section>
+          <h2>Routes</h2>
+          <p>
+            Take a look at the output of that command:
+          </p>
+          <pre><code class="console">
+    Prefix Verb   URI Pattern                  Controller#Action
+  students GET    /students(.:format)          students#index
+            POST   /students(.:format)          students#create
+new_student GET    /students/new(.:format)      students#new
+edit_student GET    /students/:id/edit(.:format) students#edit
+    student GET    /students/:id(.:format)      students#show
+            PATCH  /students/:id(.:format)      students#update
+            PUT    /students/:id(.:format)      students#update
+            DELETE /students/:id(.:format)      students#destroy
+          </code></pre>
           <br>
           <p class="fragment">
             There's a lot going on here, and we will cover it all, but for now
@@ -584,7 +728,7 @@ edit_student GET    /students/:id/edit(.:format) students#edit
           <pre><code class="ruby" data-trim>
 Rails.application.routes.draw do
   resources :students
-  root to: 'students#index'
+  <mark>root to: 'students#index'</mark>
 end
           </code></pre>
           <br>
@@ -605,7 +749,7 @@ end
           <p>
             Let's look at our routes again
           </p>
-          <pre><code class="ruby" data-trim>
+          <pre><code class="console" data-trim>
 $ rails routes
           </code></pre>
           <br>
@@ -619,13 +763,6 @@ $ rails routes
           </div>
           <br>
           <p class="fragment">
-            Awesome! Now reload the home page and see what we've got.
-          </p>
-        </section>
-
-        <section>
-          <h2>Rails Server</h2>
-          <p>
             Awesome! Now reload the home page and see what we've got.
           </p>
         </section>
@@ -745,32 +882,32 @@ end
             That's why the view may look like this when it's presented:
           </p>
           <pre class="fragment"><code class="html" data-trim>
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Age</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+&lt;table>
+  &lt;thead>
+    &lt;tr>
+      &lt;th>Name&lt;/th>
+      &lt;th>Age&lt;/th>
+      &lt;th colspan="3">&lt;/th>
+    &lt;/tr>
+  &lt;/thead>
 
-  <tbody>
-      <tr>
-        <td>Nick Cage</td>
-        <td>53</td>
-        <td><a href="/students/1">Show</a></td>
-        <td><a href="/students/1/edit">Edit</a></td>
-        <td><a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href="/students/1">Destroy</a></td>
-      </tr>
-      <tr>
-        <td>Emma Watson</td>
-        <td>27</td>
-        <td><a href="/students/3">Show</a></td>
-        <td><a href="/students/3/edit">Edit</a></td>
-        <td><a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href="/students/3">Destroy</a></td>
-      </tr>
-  </tbody>
-</table>
+  &lt;tbody>
+      &lt;tr>
+        &lt;td>Nick Cage&lt;/td>
+        &lt;td>53&lt;/td>
+        &lt;td>&lt;a href="/students/1">Show&lt;/a>&lt;/td>
+        &lt;td>&lt;a href="/students/1/edit">Edit&lt;/a>&lt;/td>
+        &lt;td>&lt;a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href="/students/1">Destroy&lt;/a>&lt;/td>
+      &lt;/tr>
+      &lt;tr>
+        &lt;td>Emma Watson&lt;/td>
+        &lt;td>27&lt;/td>
+        &lt;td>&lt;a href="/students/3">Show&lt;/a>&lt;/td>
+        &lt;td>&lt;a href="/students/3/edit">Edit&lt;/a>&lt;/td>
+        &lt;td>&lt;a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href="/students/3">Destroy&lt;/a>&lt;/td>
+      &lt;/tr>
+  &lt;/tbody>
+&lt;/table>
           </code></pre>
         </section>
 
@@ -874,21 +1011,36 @@ end
             Take a look at the view in
             <code>app/views/students/new.html.erb</code>.
           </p>
-          <pre class="fragment"><code class="html" data-trim>
-<h1>New Student</h1>
+          <pre class="fragment"><code class="erb" data-trim>
+&lt;h1>New Student&lt;/h1>
 
-<%= render 'form', student: @student %>
+&lt;%= render 'form', student: @student %>
 
-<%= link_to 'Back', students_path %>
+&lt;%= link_to 'Back', students_path %>
           </code></pre>
-          <p class="fragment">
-            Ummmm ... the form is magically rendered?
+        </section>
+
+        <section>
+          <h2>Team Challenge</h2>
+          <p>
+            There is obviously a form on the page. It came from the
+            <code>render 'form'</code> line.
+            <br>
+            But what is that line doing?
           </p>
-          <p class="fragment">
-            Actually, no. Within a view, <code>render</code> looks for a
-            <em>partial</em>, which is a view with the name you pass as an
-            argument.
-          </p>
+          <div class="fragment">
+            <br>
+            <h3>Answer</h3>
+            <p>
+              Within a view, <code>render</code> looks for a
+              <em>partial</em>, which is a view with the name you pass as an
+              argument.
+            </p>
+            <p>
+              Partials are preceded by an underscore, so it's looking for
+              <code>_form.html.erb</code>
+            </p>
+          </div>
         </section>
 
         <section>
@@ -897,34 +1049,34 @@ end
             Go find a <code>_form.html.erb</code> file within the same directory
             as the new view.
           </p>
-          <pre class="fragment"><code class="html" data-trim>
-<%= form_with(model: student, local: true) do |form| %>
-  <% if student.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(student.errors.count, "error") %> prohibited this student from being saved:</h2>
+          <pre class="fragment"><code class="erb" data-trim>
+&lt;%= form_with(model: student, local: true) do |form| %>
+  &lt;% if student.errors.any? %>
+    &lt;div id="error_explanation">
+      &lt;h2>&lt;%= pluralize(student.errors.count, "error") %> prohibited this student from being saved:&lt;/h2>
 
-      <ul>
-      <% student.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+      &lt;ul>
+      &lt;% student.errors.full_messages.each do |message| %>
+        &lt;li>&lt;%= message %>&lt;/li>
+      &lt;% end %>
+      &lt;/ul>
+    &lt;/div>
+  &lt;% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name, id: :student_name %>
-  </div>
+  &lt;div class="field">
+    &lt;%= form.label :name %>
+    &lt;%= form.text_field :name, id: :student_name %>
+  &lt;/div>
 
-  <div class="field">
-    <%= form.label :age %>
-    <%= form.number_field :age, id: :student_age %>
-  </div>
+  &lt;div class="field">
+    &lt;%= form.label :age %>
+    &lt;%= form.number_field :age, id: :student_age %>
+  &lt;/div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+  &lt;div class="actions">
+    &lt;%= form.submit %>
+  &lt;/div>
+&lt;% end %>
           </code></pre>
           <p class="fragment">
             There, that looks better!
@@ -1018,8 +1170,9 @@ end
         <section>
           <h2>Validations</h2>
           <p>
-            Did you notice you can create a student with no data? Doesn't that
-            seem silly?
+            Did you notice you can create a student with no data?
+            <br>
+            Doesn't that seem silly?
           </p>
           <p class="fragment">
             Why don't we make sure that we at least need a name to be able to
@@ -1089,46 +1242,53 @@ end
           <p class="fragment">
             OK, so it's empty. But what about the view?
           </p>
-          <pre class="fragment"><code class="ruby" data-trim>
-<h1>Editing Student</h1>
+          <pre class="fragment"><code class="erb" data-trim>
+&lt;h1>Editing Student&lt;/h1>
 
-<%= render 'form', student: @student %>
+&lt;%= render 'form', student: @student %>
 
-<%= link_to 'Show', @student %> |
-<%= link_to 'Back', students_path %>
+&lt;%= link_to 'Show', @student %> |
+&lt;%= link_to 'Back', students_path %>
           </code></pre>
           <p class="fragment">
             It's rendering the form while passing the <code>@student</code>
-            variable to it. But ... where did that variable get set?
+            variable to it.
           </p>
         </section>
 
         <section>
-          <h2>Editing A Student</h2>
+          <h2>Team Challenge</h2>
           <p>
-            Look at the top of the controller:
+            Where did the <code>@student</code> variable get set?
           </p>
-          <pre class="fragment"><code class="ruby" data-trim>
-before_action :set_student, only: [:show, :edit, :update, :destroy]
-          </code></pre>
-          <p class="fragment">
-            This tells the controller to run the <code>set_student</code>
-            method before the action is processed, but only for the show, edit
-            update, and destroy actions.
-          </p>
-          <p class="fragment">
-            Find <code>set_student</code>. It's a private method.
-          </p>
-          <pre class="fragment"><code class="ruby" data-trim>
-def set_student
-  @student = Student.find(params[:id])
-end
-          </code></pre>
-          <p class="fragment">
-            Notice how it sets the <code>@student</code> variable.
+          <div class="fragment">
             <br>
-            This is a great way to be DRY and share code among actions.
-          </p>
+            <h3>Answer</h3>
+            <p>
+              Look at the top of the controller:
+            </p>
+            <pre class="fragment"><code class="ruby" data-trim>
+  before_action :set_student, only: [:show, :edit, :update, :destroy]
+            </code></pre>
+            <p class="fragment">
+              This tells the controller to run the <code>set_student</code>
+              method before the action is processed, but only for the show, edit
+              update, and destroy actions.
+            </p>
+            <p class="fragment">
+              Find <code>set_student</code>. It's a private method.
+            </p>
+            <pre class="fragment"><code class="ruby" data-trim>
+  def set_student
+    @student = Student.find(params[:id])
+  end
+            </code></pre>
+            <p class="fragment">
+              Notice how it sets the <code>@student</code> variable.
+              <br>
+              This is a great way to be DRY and share code among actions.
+            </p>
+          </div>
         </section>
 
         <section>
@@ -1217,36 +1377,40 @@ edit_student GET    /students/:id/edit(.:format) students#edit
         </section>
 
         <section>
-          <h2>Challenge!</h2>
-          <p>
-            Next, we want to be able to add teachers.
-          </p>
-          <p>
-            So, create a teacher model with the appropriate controller and
-            views.
-          </p>
-          <p>
-            The teacher should be required to have a name, and should also
-            have a hired date.
-          </p>
+          <h2>Homework!</h2>
+          <ol>
+            <li class="fragment">
+              Create a teacher model with the appropriate controller and views.
+              The teacher should be required to have a name, and should also
+              have a hired date called <code>hired_at</code>.
+            </li>
+            <li class="fragment">
+              Add a way to be able to navigate to the students index and
+              teachers index from any page on the app.
+            </li>
+          </ol>
         </section>
 
         <section>
-          <h2>Challenge: Solution!</h2>
+          <h1>Session 3: Relationships</h1>
+        </section>
+
+        <section>
+          <h2>Homework #1: Solution!</h2>
           <p class="fragment">
-            Run the scaffold generator
+            Run the scaffold generator:
           </p>
           <pre class="fragment"><code class="console" data-trim>
 $ rails generate scaffold teacher name:string hired_at:date
           </code></pre>
           <p class="fragment">
-            Run the migration.
+            Run the migration:
           </p>
           <pre class="fragment"><code class="console" data-trim>
 $ rails db:migrate
           </code></pre>
           <p class="fragment">
-            Add the validation to the model.
+            Add the validation to the model:
           </p>
           <pre class="fragment"><code class="ruby" data-trim>
 validates_presence_of :name
@@ -1254,15 +1418,11 @@ validates_presence_of :name
         </section>
 
         <section>
-          <h2>Teachers</h2>
-          <p>
-            Question: How do we get to the teachers views in the browser?
-          </p>
+          <h2>Homework #2: Solution!</h2>
           <p class="fragment">
-            One option: Go to <code>/teachers</code> directly.
-          </p>
-          <p class="fragment">
-            Better option: Build a header with links to students and teachers.
+            Build a header with links to students and teachers.
+            <br>
+            The next few slides will cover this solution.
           </p>
         </section>
 
@@ -1276,15 +1436,17 @@ validates_presence_of :name
             rest of the HTML. Where does it come from?
           </p>
           <p class="fragment">
-            Answer: <code>app/views/layouts/application.html.erb</code>
+            <code>app/views/layouts/application.html.erb</code>
           </p>
           <p class="fragment">
+            <br>
             There it is! How do our views get plugged into this?
           </p>
           <p class="fragment">
-            Answer: They are rendered where you see <code><%= yield %></code>.
+            They are rendered where you see <code><%= yield %></code>.
           </p>
           <p class="fragment">
+            <br>
             Try it. Add some HTML to the body of the layout and see if it
             shows up in the browser!
           </p>
@@ -1293,30 +1455,31 @@ validates_presence_of :name
         <section>
           <h2>Shared Header</h2>
           <p>
-            So, right inside the layout, we can add a header:
+            Right inside the layout, we can add a header:
           </p>
-          <pre class="fragment"><code class="ruby" data-trim>
-&lt;body>
-  <header>
-    <h1>
-      <%= link_to 'GreatGraders', root_path %>
-    </h1>
-    <ul>
-      <li>
-        <%= link_to 'Students', students_path %>
-      </li>
-      <li>
-        <%= link_to 'Teachers', teachers_path %>
-      </li>
-    </ul>
-    <hr>
-  </header>
-  <%= yield %>
+          <pre class="fragment"><code class="erb" data-trim>
+&lt;body><mark>
+  &lt;header>
+    &lt;h1>
+      &lt;%= link_to 'GreatGraders', root_path %>
+    &lt;/h1>
+    &lt;ul>
+      &lt;li>
+        &lt;%= link_to 'Students', students_path %>
+      &lt;/li>
+      &lt;li>
+        &lt;%= link_to 'Teachers', teachers_path %>
+      &lt;/li>
+    &lt;/ul>
+    &lt;hr>
+  &lt;/header></mark>
+  &lt;%= yield %>
 &lt;/body>
           </code></pre>
           <p class="fragment">
-            It works, but it's pretty ugly. So why don't we move it into its
-            own partial?
+            It works, but it's pretty ugly.
+            <br>
+            Why don't we move it into its own partial?
           </p>
         </section>
 
@@ -1331,8 +1494,8 @@ validates_presence_of :name
           </p>
           <pre class="fragment"><code class="ruby" data-trim>
 &lt;body>
-  <%= render 'header' %>
-  <%= yield %>
+  <mark>&lt;%= render 'header' %></mark>
+  &lt;%= yield %>
 &lt;/body>
           </code></pre>
         </section>
@@ -1343,13 +1506,21 @@ validates_presence_of :name
             Now we need to find a way to group students and teachers together,
             so we can track the students each teacher is responsible for.
           </p>
-          <p class="fragment">
-            Let's create a Classroom model that is <em>associated</em> to
-            students and teachers.
+        </section>
+
+        <section>
+          <h2>Team Challenge</h2>
+          <p>
+            How do I create a "Classroom" scaffold where each classroom
+            has a room number as an integer?
           </p>
-          <pre class="fragment"><code class="console" data-trim>
+          <div class="fragment">
+            <br>
+            <h3>Answer</h3>
+            <pre><code class="console" data-trim>
 $ rails generate scaffold classroom room_number:integer
-          </code></pre>
+            </code></pre>
+          </div>
         </section>
 
         <section>
@@ -1360,7 +1531,7 @@ $ rails generate scaffold classroom room_number:integer
           </p>
           <pre class="fragment"><code class="ruby" data-trim>
 class Classroom < ApplicationRecord
-  validates_presence_of :room_number
+  <mark>validates_presence_of :room_number</mark>
 end
           </code></pre>
         </section>
@@ -1371,10 +1542,10 @@ end
             Now we want to make sure we can navigate to classrooms from the
             header
           </p>
-          <pre class="fragment"><code class="ruby" data-trim>
-<li>
-  <%= link_to 'Classrooms', classrooms_path %>
-</li>
+          <pre class="fragment"><code class="erb" data-trim>
+&lt;li>
+  &lt;%= link_to 'Classrooms', classrooms_path %>
+&lt;/li>
           </code></pre>
         </section>
 
@@ -1439,7 +1610,7 @@ end
         <section>
           <h2>Grouping Students and Teachers</h2>
           <p>
-            Now we can migrate.
+            Now we can migrate:
           </p>
           <pre class="fragment"><code class="console" data-trim>
 $ rails db:migrate
@@ -1462,7 +1633,7 @@ $ rails db:migrate
           <pre class="fragment"><code class="ruby" data-trim>
 class Student < ApplicationRecord
 
-  belongs_to :classroom
+  <mark>belongs_to :classroom</mark>
 
   validates_presence_of :name
 
@@ -1476,14 +1647,15 @@ end
         <section>
           <h2>Grouping Students and Teachers</h2>
           <p>
-            Classrooms <em>have many</em> students and teachers. Its model
-            looks like this:
+            Classrooms <em>have many</em> students and teachers.
+            <br>
+            Its model looks like this:
           </p>
           <pre class="fragment"><code class="ruby" data-trim>
 class Classroom < ApplicationRecord
-
+<mark>
   has_many :students
-  has_many :teachers
+  has_many :teachers</mark>
 
   validates_presence_of :room_number
 
@@ -1501,24 +1673,32 @@ end
             First, we want to add the <code>classroom_id</code> to the student
             form.
           </p>
-          <pre class="fragment"><code class="erb" data-trim>
-  <div class="field">
-    <%= form.label :classroom_id %>
-    <%= select student, :classroom_id, @classrooms %>
-  </div>
+          <pre class="fragment"><code class="html" data-trim>
+&lt;div class="field">
+  &lt;%= form.label :classroom_id %>
+  &lt;%= select student, :classroom_id, @classrooms %>
+&lt;/div>
           </code></pre>
-          <p class="fragment">
-            That causes an error! Why?
+        </section>
+
+        <section>
+          <h2>Team Challenge</h2>
+          <p>
+            The code you just added caused an error! Why?
           </p>
-          <p class="fragment">
-            Because we didn't set <code>@classrooms</code> to anything.
-          </p>
+          <div class="fragment">
+            <br>
+            <h3>Answer</h3>
+            <p>
+              Because we didn't set <code>@classrooms</code> to anything.
+            </p>
+          </div>
         </section>
 
         <section>
           <h2>Grouping Students and Teachers</h2>
           <p>
-            Make it available in the students controller
+            Make it available in the students controller:
           </p>
           <pre class="fragment"><code class="ruby" data-trim>
 before_action :set_classrooms, only: [:new, :create, :edit, :update]
@@ -1580,7 +1760,7 @@ end
     &lt;tr>
       &lt;th>Name&lt;/th>
       &lt;th>Age&lt;/th>
-      &lt;th>Classroom&lt;/th>
+      <mark>&lt;th>Classroom&lt;/th></mark>
       &lt;th colspan="3">&lt;/th>
     &lt;/tr>
   &lt;/thead>
@@ -1590,7 +1770,7 @@ end
       &lt;tr>
         &lt;td>&lt;%= student.name %>&lt;/td>
         &lt;td>&lt;%= student.age %>&lt;/td>
-        &lt;td>&lt;%= student.classroom_id %>&lt;/td>
+        <mark>&lt;td>&lt;%= student.classroom_id %>&lt;/td></mark>
         &lt;td>&lt;%= link_to 'Show', student %>&lt;/td>
         &lt;td>&lt;%= link_to 'Edit', edit_student_path(student) %>&lt;/td>
         &lt;td>&lt;%= link_to 'Delete', student, method: :delete, data: { confirm: 'Are you sure?' } %>&lt;/td>
@@ -1610,8 +1790,10 @@ end
 <td><%= student.classroom.room_number %></td>
           </code></pre>
           <p class="fragment">
-            WARNING! This causes what we call an N+1 problem. Solving it is
-            outside the scope of this course.
+            WARNING! This causes what we call an N+1 problem.
+            <br>
+            (Solving it is outside the scope of this course, but Google will
+            help!)
           </p>
         </section>
 
@@ -1651,8 +1833,9 @@ end
         <section>
           <h2>Pause for Ruby Magic</h2>
           <p>
-            This is outside the scope, but check this out. You can write
-            the same code from the previous slide like this:
+            This is outside the scope of our class, but check this out.
+            <br>
+            You can write the same code from the previous slide like this:
           </p>
           <pre class="fragment"><code class="erb" data-trim>
 &lt;% [Student, Teacher].each do |model| %>
@@ -1667,7 +1850,47 @@ end
         </section>
 
         <section>
-          <h1>Deploying To Heroku!</h1>
+          <h2>Homework!</h2>
+          <p>
+            Create a home page that isn't the index views of any of the
+            controllers we've create so far.
+          </p>
+          <p>
+            Hint: You'll probably want a new controller and view (and don't
+            forget the route.)
+          </p>
+        </section>
+
+        <section>
+          <h1>Session 4: Deploy!</h1>
+        </section>
+
+        <section>
+          <h2>Homework: Solution!</h2>
+          <p class="fragment">
+            Create a controller:
+          </p>
+          <pre class="fragment"><code class="console" data-trim>
+$ rails generate controller pages
+          </code></pre>
+          <p class="fragment">
+            Add a home action:
+          </p>
+          <pre class="fragment"><code class="ruby" data-trim>
+class PagesController < ApplicationController
+  def home
+  end
+end
+          </code></pre>
+          <p class="fragment">
+            Add the view at <code>app/views/pages/home.html.erb</code>.
+          </p>
+          <p class="fragment">
+            Change the root route in <code>config/routes.rb</code>.
+          </p>
+          <pre class="fragment"><code class="ruby" data-trim>
+root to: 'pages#home'
+          </code></pre>
         </section>
 
         <section>
@@ -1695,7 +1918,7 @@ $ heroku login
           </p>
           <pre class="fragment"><code class="console" data-trim>
 $ git init
-$ heroku git:remote -a gdi-test-classroom-manager
+$ heroku git:remote -a [APP_NAME]
           </code></pre>
         </section>
 
@@ -1731,7 +1954,8 @@ $ git push heroku master
             up for production.
           </p>
           <p class="fragment">
-            First, in our Gemfile, adjust the sqlite3 gem:
+            First, in our Gemfile, adjust the sqlite3 gem and add pg for
+            production only:
           </p>
           <pre class="fragment"><code class="ruby" data-trim>
 group :development, :test do
@@ -1742,13 +1966,17 @@ group :production do
   gem 'pg'
 end
           </code></pre>
-          <p class="fragment">
+        </section>
+
+        <section>
+          <h2>Deploying To Heroku!</h2>
+          <p>
             Then in the database configuration change the production section.
           </p>
           <pre class="fragment"><code class="ruby" data-trim>
 production:
   adapter: postgresql
-  database: my_database_production
+  database: gdi_app_production
   pool: 5
   timeout: 5000
           </code></pre>
@@ -1757,7 +1985,7 @@ production:
         <section>
           <h2>Deploying To Heroku!</h2>
           <p>
-            Commit the change
+            Commit the change:
           </p>
           <pre class="fragment"><code class="console" data-trim>
 $ git add .
@@ -1782,7 +2010,7 @@ $ git push heroku master
         <section>
           <h2>Deploying To Heroku!</h2>
           <p>
-            You can inspect the logs from Heroku.
+            You can inspect the logs from Heroku:
           </p>
           <pre class="fragment"><code class="console" data-trim>
 $ heroku logs
@@ -1793,48 +2021,189 @@ $ heroku logs
           <pre class="fragment"><code class="console" data-trim>
 ActionView::Template::Error (PG::UndefinedTable: ERROR:  relation "students" does not exist
           </code></pre>
-          <p class="fragment">
-            Maybe we forgot to migrate?
+        </section>
+
+        <section>
+          <h2>Team Challenge</h2>
+          <p>
+            What is the solution to the error?
           </p>
+          <div class="fragment">
+            <br>
+            <h3>Answer</h3>
+            <p>
+              Migrate the production database on the Heroku server.
+            </p>
+            <pre><code class="console" data-trim>
+$ heroku run rails db:migrate
+            </code></pre>
+          </div>
         </section>
 
         <section>
           <h2>Deploying To Heroku!</h2>
           <p>
-            Run the migration command on Heroku
-          </p>
-          <pre class="fragment"><code class="console" data-trim>
-$ heroku run rails db:migrate
-          </code></pre>
-          <p class="fragment">
             Check the app now and it should be working properly!
           </p>
+        </section>
+
+        <section data-background-image="https://media.giphy.com/media/axu6dFuca4HKM/giphy.gif">
+          <h2 class="text-white">You built and deployed a Rails app!!!</h2>
+        </section>
+
+        <section>
+          <h1>Bonus Material</h1>
         </section>
 
         <section>
           <h2>The Asset Pipeline</h2>
           <p>
-            Your app has two files that consolidate all styles:
-            <code>app/assets/stylesheets/application.css</code> and
-            <code>app/assets/javascripts/application.js</code>
+            Rails comes with an asset pipeline that helps properly deliver
+            all your app's assets, such as stylesheets, javascripts, images,
+            font, videos, etc.
           </p>
-          <p>
-            The Rails asset pipeline is super powerful
+          <p class="fragment">
+            These are all (or <em>mostly</em>) in <code>app/assets</code>
+          </p>
+          <p class="fragment">
+            Two files --
+            <code>app/assets/stylesheets/application.css</code> and
+            <code>app/assets/javascripts/application.js</code> --
+            are the main stylesheet and javascript files so everything is
+            compiled into one place.
           </p>
         </section>
 
         <section>
-          <h2>Some Closing Thoughts</h2>
-          <ul>
-            <li class="fragment">
-              Gems are super useful. Checkout popular ones like Devise,
-              SimpleForm, Paperclip, Kaminari.
-            </li>
-            <li class="fragment">
-              Testing is invaluable and should become part of your practice
-              once you're comfortable within the framework.
-            </li>
-          </ul>
+          <h2>Ruby Gems</h2>
+          <p>
+            Gems are super useful. Checkout popular ones like Devise,
+            SimpleForm, Paperclip, Kaminari.
+          </p>
+          <p class="fragment">
+            Let's combine the asset pipeline and a gem together.
+          </p>
+        </section>
+
+        <section>
+          <h2>Bootstrap</h2>
+          <p>
+            Boostrap is a popular CSS framework that makes apps look good
+            (well, <em>not horrible</em>) without much effort.
+          </p>
+          <p class="fragment">
+            Let's add Boostrap to our Gemfile
+          </p>
+          <pre class="fragment"><code class="ruby" data-trim>
+gem 'bootstrap-sass'
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Bootstrap</h2>
+          <p>
+            Next, rename <code>application.css</code> to
+            <code>application.scss</code> so we can take advantage of Sass.
+          </p>
+          <p class="fragment">
+            Then import Bootstrap into your styles.
+          </p>
+          <pre class="fragment"><code class="scss" data-trim>
+@import 'bootstrap-sprockets';
+@import 'bootstrap';
+          </code></pre>
+          <p class="fragment">
+            And restart your rails server. This is usually a good idea
+            after adding a new gem.
+          </p>
+          <p class="fragment">
+            It already looks better!
+          </p>
+        </section>
+
+        <section>
+          <h2>Bootstrap</h2>
+          <p>
+            Now we can use some Bootstrap conventions to make it looks even
+            nicer.
+          </p>
+          <p class="fragment">
+            For example, let's format the header the way Bootstrap would like.
+          </p>
+          <pre class="fragment"><code class="html" data-trim>
+&lt;header>
+  &lt;nav class="navbar navbar-default">
+    &lt;div class="container-fluid">
+      &lt;div class="navbar-header">
+        &lt;%= link_to 'GreatGraders', root_path, class: 'navbar-brand' %>
+      &lt;/div>
+      &lt;ul class="nav navbar-nav navbar-right">
+        &lt;li>
+          &lt;%= link_to 'Students', students_path %>
+        &lt;/li>
+        &lt;li>
+          &lt;%= link_to 'Teachers', teachers_path %>
+        &lt;/li>
+        &lt;li>
+          &lt;%= link_to 'Classrooms', classrooms_path %>
+        &lt;/li>
+      &lt;/ul>
+    &lt;/div>
+  &lt;/nav>
+&lt;/header>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Bootstrap</h2>
+          <p>
+            We could also wrap all our content in a conainter so it
+            doesn't stretch too wide.
+          </p>
+          <pre class="fragment"><code class="html" data-trim>
+&lt;%= render 'header' %>
+
+&lt;div class="container">
+  &lt;%= yield %>
+&lt;/div>
+          </code></pre>
+          <p class="fragment">
+            And your tables will instantly look better if you add the
+            <code>table</code> class to all of them.
+          </p>
+        </section>
+
+        <section>
+          <h2>Testing</h2>
+          <p>
+            Testing is invaluable and should become part of your practice
+            once you're comfortable within the framework.
+          </p>
+          <p class="fragment">
+            Testing helps prevent regression (bugs) when your app becomes
+            large.
+          </p>
+          <p class="fragment">
+            Rails ships with TestUnit, but many replace it with RSpec.
+          </p>
+        </section>
+
+        <section>
+          <h2>Homework!</h2>
+          <p class="fragment">
+            There's a ton we didn't touch upon here, because Rails keeps
+            going. You will do all kinds of crazy stuff if you keep with it.
+          </p>
+          <p class="fragment">
+            Stick with it. Pick a project and see it through.
+          </p>
+          <p class="fragment">
+            Google before you ask, but don't be afraid to ask
+            (StackOverflow, GDI Slack, etc.)
+          </p>
+        </section>
+
+        <section data-background-image="https://media.giphy.com/media/l2YWjjzDaZHTowGLm/giphy.gif">
         </section>
       </div>
     </div>
@@ -1861,26 +2230,6 @@ $ heroku run rails db:migrate
         center: true,
 
         transition: 'fade', // none/fade/slide/convex/concave/zoom
-
-        // Optional reveal.js plugins
-        // dependencies: [
-        //   // { src: 'dist/js/classList.js', condition: function() { return !document.body.classList; } },
-        //   // { src: 'plugins/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-        //   // { src: 'plugins/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-        //   // {
-        //   //   src: 'plugins/highlight/highlight.js',
-        //   //   async: true,
-        //   //   condition: function() {
-        //   //     return !!document.querySelector( 'pre code' );
-        //   //   },
-        //   //   callback: function() {
-        //   //     hljs.initHighlightingOnLoad();
-        //   //   }
-        //   // },
-        //   // { src: 'plugins/zoom-js/zoom.js', async: true },
-        //   // { src: 'plugins/notes/notes.js', async: true },
-        //   // { src: 'plugins/accessibility-helper/js/accessibility-helper.js', async: true, condition: function() { return !!document.body.classList; } }
-        // ]
       });
 
     </script>

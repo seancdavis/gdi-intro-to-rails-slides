@@ -90,12 +90,20 @@ module.exports = function(grunt) {
         },
 
         watch: {
-            main: {
-                files: [ 'src/**/*' ],
-                tasks: 'default'
+            views: {
+                files: [ 'src/**/*.html' ],
+                tasks: 'copy'
+            },
+            // main: {
+            //     files: [ 'src/**/*' ],
+            //     tasks: 'default'
+            // },
+            js: {
+                files: [ 'src/js/**/*' ],
+                tasks: ['copy', 'uglify']
             },
             css: {
-                files: [ 'src/scss/**/*.scss' ],
+                files: [ 'src/scss/**/*' ],
                 tasks: 'sass'
             },
             theme: {

@@ -257,16 +257,43 @@ book.reverse_title # => 'naitraM ehT'
         <section>
           <h2>Demo</h2>
           <p>
-            We're going to build a classroom grading system!
+            We're going to build a classroom organization system!
+          </p>
+          <p>
+            See demo at
+            <a href="https://goo.gl/iEVgjT">https://goo.gl/iEVgjT</a>.
           </p>
         </section>
 
         <section>
-          <p>TODO: Slides on Cloud9 setup</p>
+          <h2>Cloud9 Setup</h2>
+          <ol>
+            <li class="fragment">
+              Sign up for an account at https://c9.io/signup
+            </li>
+            <li class="fragment">
+              Create a new workspace (https://c9.io/new)
+            </li>
+            <li class="fragment">
+              Call it <code>gdi-intro-to-rails</code>
+            </li>
+            <li class="fragment">
+              Clone from this URL: <code>git@github.com:seancdavis/gdi-intro-to-rails.git</code>
+            </li>
+          </ol>
         </section>
 
         <section>
-          <p>TODO: Slides on Cloud9 setup</p>
+          <h2>Cloud9 Setup</h2>
+          <ol>
+            <li class="fragment">
+              Install bundler: <code>gem install bundler</code>
+            </li>
+            <li class="fragment">
+              Install ruby gems: <code>bundle install</code>
+            </li>
+            <!-- Now you can start the server with `rails s -b 0.0.0.0` -->
+          </ol>
         </section>
 
         <section>
@@ -633,8 +660,11 @@ $ rails console
             by starting the server.
           </p>
           <pre class="fragment"><code class="console" data-trim>
-$ rails server
+$ rails server -b 0.0.0.0
           </code></pre>
+          <p class="fragment">
+            Then we have to locate the correct URL.
+          </p>
         </section>
 
         <section>

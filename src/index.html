@@ -31,15 +31,24 @@
           <p>
             <br>
             <small>
-              <a href ="https://github.com/seancdavis/gdi-ruby-on-rails">Presentation Code</a>
+              <a href ="https://github.com/seancdavis/gdi-intro-to-rails-slides"
+                 target="_blank">
+                Presentation Code
+              </a>
             </small>
             <br>
             <small>
-              <a href ="https://github.com/seancdavis/gdi-ruby-on-rails">Presentation Site</a>
+              <a href ="https://seancdavis.github.io/gdi-intro-to-rails-slides"
+                 target="_blank">
+                Presentation Site
+              </a>
             </small>
             <br>
             <small>
-              <a href ="https://github.com/seancdavis/gdi-ruby-on-rails">Course Source Code</a>
+              <a href ="https://github.com/seancdavis/gdi-ruby-on-rails"
+                 target="_blank">
+                Course Source Code
+              </a>
             </small>
           </p>
         </section>
@@ -70,10 +79,13 @@
               There are no dumb questions
             </li>
             <li class="fragment">
-              Respect each other
+              Be curious and ask
             </li>
             <li class="fragment">
-              Be curious and ask questions
+              (But we have to move fast)
+            </li>
+            <li class="fragment">
+              Respect each other
             </li>
             <li class="fragment">
               Have fun!
@@ -105,15 +117,19 @@
         <section>
           <h2>Sessions</h2>
           <ol>
-            <li>Intro / Background</li>
-            <li>CRUD</li>
-            <li>Relationships</li>
-            <li>Deploy</li>
+            <li>Intro, Background, and Theory</li>
+            <li>CRUD (Create, Read, Update, Delete)</li>
+            <li>Data Relationships</li>
+            <li>(BONUS!) Deploy to Heroku</li>
           </ol>
         </section>
 
         <section>
-          <h1>Session 1: Intro / Background</h1>
+          <h1>
+            Session 1:
+            <br>
+            <small>Intro, Background, Theory</small>
+          </h1>
         </section>
 
         <section>
@@ -140,8 +156,8 @@
           <h2 class="text-white">Work Hard</h2>
         </section>
 
-        <section data-background-image="https://media.giphy.com/media/5fBH6z8ItAoZy4VNlWo/giphy.gif">
-          <h2 class="text-black">Google!</h2>
+        <section data-background-image="https://media.giphy.com/media/3ohzdPM43X326fUNnW/giphy.gif">
+          <h2 class="text-white">Google Is Your Best Friend!</h2>
         </section>
 
         <section data-background-image="https://media.giphy.com/media/BhzQ7bda46OM8/giphy.gif">
@@ -153,36 +169,7 @@
         </section>
 
         <section>
-          <h1>Ruby</h1>
-        </section>
-
-        <section>
-          <h2>Ruby Is</h2>
-          <ul>
-            <li class="fragment">Productive</li>
-            <li class="fragment">Fun</li>
-            <li class="fragment">Not Surprising</li>
-          </ul>
-        </section>
-
-        <section>
-          <h2>Examples:</h2>
-<pre><code class="ruby"># variables
-my_var = 1 # => 1
-
-# operations
-my_var + 1 # => 2
-
-# arrays
-my_array = [1, 2, 'a', 'b', my_var] # => [1, 2, 'a', 'b', 1]
-
-# methods
-def add(a, b)
-  a + b
-end
-
-add(2, 3) # => 5
-</code></pre>
+          <h1>Some Theory</h1>
         </section>
 
         <section>
@@ -212,13 +199,17 @@ book.reverse_title # => 'naitraM ehT'
         </section>
 
         <section>
-          <h1>Ruby on Rails</h1>
+          <h1>Rails</h1>
         </section>
 
         <section>
           <h2>Rails is:</h2>
           <ul>
             <li class="fragment">Server-Side Web Application Framework</li>
+            <li class="fragment">Written in Ruby</li>
+            <li class="fragment">
+              Used by 1.2M Sites:<br>Basecamp, AirBNB, GitHub, Dribble
+            </li>
             <li class="fragment">Productive</li>
             <li class="fragment">Fun!</li>
           </ul>
@@ -227,26 +218,25 @@ book.reverse_title # => 'naitraM ehT'
         <section>
           <h2>Rails Principles:</h2>
           <ul>
-            <li class="fragment">Don't Repeat Yourself (DRY)</li>
+            <li class="fragment">
+              Don't Repeat Yourself
+              (<a href="https://en.wikipedia.org/wiki/Don%27t_repeat_yourself">DRY</a>)
+            </li>
             <li class="fragment">Convention Over Configuration (The Rails Way)</li>
           </ul>
         </section>
 
         <section>
-          <h2>Rails' History</h2>
+          <h2>HTML, CSS, and JavaScript?</h2>
           <ul>
-            <li class="fragment">Released in 2005</li>
-            <li class="fragment">Extracted from Basecamp</li>
-            <li class="fragment">Used by 1.2M: Basecamp, AirBNB, GitHub, Dribble</li>
+            <li class="fragment">They still play a big role</li>
           </ul>
-        </section>
-
-        <section>
-          <h2>What About HTML/CSS?</h2>
+          <br><br>
+          <h3 class="fragment">Rails gives us:</h3>
           <ul>
-            <li class="fragment">HTML and CSS still play a big role</li>
             <li class="fragment">Dynamic data (database)</li>
-            <li class="fragment">Scalability and Flexibility</li>
+            <li class="fragment">Flexibility</li>
+            <li class="fragment">Scalability</li>
           </ul>
         </section>
 
@@ -255,15 +245,35 @@ book.reverse_title # => 'naitraM ehT'
         </section>
 
         <section>
+          <h2>Cloud9</h2>
+          <ul>
+            <li class="fragment">
+              A hosted development environment
+            </li>
+            <li class="fragment">
+              Usually you'll be local (text editor and command line)
+            </li>
+            <li class="fragment">
+              This saves us setup time
+            </li>
+            <li class="fragment">
+              I will help you setup 🍻 ☕️
+            </li>
+          </ul>
+        </section>
+
+        <!-- <section>
           <h2>Demo</h2>
           <p>
             We're going to build a classroom organization system!
           </p>
           <p>
             See demo at
-            <a href="https://goo.gl/iEVgjT">https://goo.gl/iEVgjT</a>.
+            <a href="https://goo.gl/iEVgjT" target="_blank">
+              https://goo.gl/iEVgjT
+            </a>.
           </p>
-        </section>
+        </section> -->
 
         <section>
           <h2>Cloud9 Setup</h2>
@@ -294,6 +304,13 @@ book.reverse_title # => 'naitraM ehT'
             </li>
             <!-- Now you can start the server with `rails s -b 0.0.0.0` -->
           </ol>
+          <br><br>
+          <h3 class="fragment">Bundler</h3>
+          <ul>
+            <li class="fragment">A package manager</li>
+            <li class="fragment">Helps manage ruby gems (packages)</li>
+            <li class="fragment">Gems make developing a lot easier</li>
+          </ul>
         </section>
 
         <section>
@@ -345,11 +362,11 @@ book.reverse_title # => 'naitraM ehT'
         </section>
 
         <section>
-          <h2>Model-View-Controller (MVC)</h2>
+          <h2>If MVC Were A Painting</h2>
           <ul>
-            <li>Model: The scientist</li>
-            <li>Controller: The conductor</li>
-            <li>View: The mailman</li>
+            <li class="fragment">Model = Paint</li>
+            <li class="fragment">Controller = Artist</li>
+            <li class="fragment">View = Canvas</li>
           </ul>
         </section>
 
@@ -376,7 +393,23 @@ book.reverse_title # => 'naitraM ehT'
         </section>
 
         <section>
-          <h1>Session 2: CRUD</h1>
+          <h1>
+            Session 2: CRUD
+            <br>
+            <small>Create, Read, Update, Delete</small>
+          </h1>
+        </section>
+
+        <section>
+          <h2>Database</h2>
+          <ul>
+            <li class="fragment">
+              A database is like a file cabinet for your app
+            </li>
+            <li class="fragment">
+              It's kind of like Excel, if Excel didn't suck
+            </li>
+          </ul>
         </section>
 
         <section>
@@ -390,6 +423,10 @@ book.reverse_title # => 'naitraM ehT'
         <section>
           <h2>Models</h2>
           <p>Data objects used by the application.</p>
+          <br>
+          <p class="fragment">
+            They usually represent a table in our database.
+          </p>
           <br>
           <p class="fragment">What will our app require?</p>
           <ul>
@@ -405,8 +442,13 @@ book.reverse_title # => 'naitraM ehT'
           <h2>Attributes</h2>
           <p>
             An attribute is a piece of information about a model.
-            <br>
-            Attributes are <strong>database columns</strong>.
+          </p>
+          <p>
+            Attributes are (usually) <strong>database columns</strong>.
+          </p>
+          <br>
+          <p class="fragment">
+            Think: how you refine an Amazon.com search.
           </p>
           <br>
           <p class="fragment">What attributes should our students have?</p>
@@ -612,6 +654,10 @@ end
           <p class="fragment">
             This means your app now has a <code>Student</code> class which
             inherits from an <code>ApplicationRecord</code> class.
+          </p>
+          <br>
+          <p class="fragment">
+            In Ruby, every class is just an object.
           </p>
         </section>
 
@@ -1422,11 +1468,15 @@ edit_student GET    /students/:id/edit(.:format) students#edit
         </section>
 
         <section>
-          <h1>Session 3: Relationships</h1>
+          <h1>
+            Session 3:
+            <br>
+            <small>Data Relationships</small>
+          </h1>
         </section>
 
         <section>
-          <h2>Homework #1: Solution!</h2>
+          <h2>Homework: Solution!</h2>
           <p class="fragment">
             Run the scaffold generator:
           </p>
@@ -1448,7 +1498,7 @@ validates_presence_of :name
         </section>
 
         <section>
-          <h2>Homework #2: Solution!</h2>
+          <h2>Homework: Solution!</h2>
           <p class="fragment">
             Build a header with links to students and teachers.
             <br>
@@ -1892,7 +1942,11 @@ end
         </section>
 
         <section>
-          <h1>Session 4: Deploy!</h1>
+          <h1>
+            Session 4: Bonus!
+            <br>
+            <small>Deploy To Heroku</small>
+          </h1>
         </section>
 
         <section>
@@ -2219,6 +2273,28 @@ gem 'bootstrap-sass'
         </section>
 
         <section>
+          <h2>Resources</h2>
+          <ul>
+            <li class="fragment">
+              Google!
+            </li>
+            <li class="fragment">
+              GDI Slack (when appropriate)
+            </li>
+            <li class="fragment">
+              <a href="https://www.railstutorial.org/book">
+                Michael Hartl's Book
+              </a>
+            </li>
+            <li class="fragment">
+              <a href="https://medium.com/ruby-on-rails/learning-ruby-on-rails-in-2016-from-the-best-resources-ecffb36a1fb1">
+                And lots more
+              </a>
+            </li>
+          </ul>
+        </section>
+
+        <section>
           <h2>Homework!</h2>
           <p class="fragment">
             There's a ton we didn't touch upon here, because Rails keeps
@@ -2228,8 +2304,7 @@ gem 'bootstrap-sass'
             Stick with it. Pick a project and see it through.
           </p>
           <p class="fragment">
-            Google before you ask, but don't be afraid to ask
-            (StackOverflow, GDI Slack, etc.)
+            Google before you ask, but don't be afraid to ask.
           </p>
         </section>
 
